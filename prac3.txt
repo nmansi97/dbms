@@ -1,0 +1,71 @@
+1)
+declare 
+  no number;
+  c number;
+  salary number;
+  hra number;
+  da number;
+  net number;
+Begin
+ dbms_output.put_line('enter id : ' || :no);
+ select count(*) into c from emp where empno = :no;
+ select sal into salary from emp where empno = :no;
+ if c > 0 then
+    dbms_output.put_line('existed');
+    hra := salary * 0.10;
+    da := salary * 0.60;
+    net := salary + hra + da;
+    dbms_output.put_line('hra : ' ||hra);
+    dbms_output.put_line('da : ' ||da);
+    dbms_output.put_line('net salaary : ' ||net);
+  
+ else
+     dbms_output.put_line('not existed');
+ end if;
+end;
+
+
+
+
+
+2)
+ 
+declare 
+  no number;
+  c number;
+  salary number;
+Begin
+ dbms_output.put_line('enter id : ' || :no);
+ select count(*) into c from emp where empno = :no;
+ select sal into salary from emp where empno = :no;
+ if salary < 10000 then
+    dbms_output.put_line('less salary');
+ elsif salary > 10000 and salary < 30000 then
+    dbms_output.put_line('medium salary');
+ elsif salary > 30000 and salary < 60000 then
+    dbms_output.put_line('high salary');
+ elsif salary > 60000 then
+    dbms_output.put_line('very high salary');
+ end if;
+end;
+
+
+4)
+
+declare 
+  no number :=12345;
+  d number;
+  rev number := 0 ;
+ 
+Begin
+
+ while no > 0 LOOP
+    
+    d := mod(no,10);
+    rev := (rev * 10) + d;
+    no := floor(no / 10);
+    
+  END LOOP;
+dbms_output.put_line('reverse number : ' || rev);
+end;
+   
